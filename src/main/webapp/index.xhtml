@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/template.xhtml">
+    <ui:define name="title">Pac4J CDI Demo</ui:define>
+    <ui:define name="content">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <h:form id="form1">
+                    <div class="ui-container">
+                        <h1>Pac4J JSF/CDI Demo</h1>
+                        <p>This page displays various JSF/CDI use-case and capabilities.</p>
+                        <p><h:outputText value="session Id: #{session.id}"/></p>
+                        <ul>
+                            <li><h:link
+                                    outcome="/oidc/index">Conexion a autenticacion digital: /oidc/index.action</h:link> (use a real account)
+                            </li>
+
+                            <li>
+                                <h:commandLink value="logout" action="#{logoutAction.logout}">
+                                    Logout via JSF Action
+                                </h:commandLink>
+                            </li>
+                            <li>
+                                <h:outputLink value="logout">
+                                    Logout via callback
+                                    <f:param name="url" value="/?forcepostlogouturl"/>
+                                </h:outputLink>
+                            </li>
+                            <li>
+                                <h:outputLink value="centralLogout">
+                                    Central Logout via callback
+                                    <f:param name="url" value="/?forcepostlogouturlafteridp"/>
+                                </h:outputLink>
+                            </li>
+                        </ul>
+                    </div>
+                    <ui:include src="/WEB-INF/facelets/includes/pac4j-profiles-list.xhtml"/>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
